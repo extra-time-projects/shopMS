@@ -1,9 +1,11 @@
 # shop
 Petshop Micro Service
 
-To test:
 
-localhost:8080/shop
-or
-localhost:8080/shop?name=StoreName
+### Build and Run:
+`mvn package && java -jar target/shops-0.0.1-SNAPSHOT.jar`
+
+#### To access service :
+
+`localhost:8080/shops`
 
