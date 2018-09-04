@@ -1,0 +1,14 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: appweb
+    ports:
+    - 8080:8080
+    networks:
+    - network1
+
+networks:
+  network1:

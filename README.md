@@ -11,3 +11,11 @@ Petshop Micro Service
 
 `localhost:8080/shops`
 
+
+### Run Docker
+
+- `sudo docker-compose up --build`
+
+##### OR
+- `sudo docker build -t shops .`
+- `sudo docker run -p 8080:8080 shops`
