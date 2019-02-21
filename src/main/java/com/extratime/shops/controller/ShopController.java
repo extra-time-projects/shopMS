@@ -1,20 +1,35 @@
 package com.extratime.shops.controller;
 
 import com.extratime.shops.entity.Shop;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.extratime.shops.repository.ShopRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.*;
 
 @RestController
 public class ShopController {
 
-    private final AtomicLong counter = new AtomicLong();
+    @Autowired
+    private ShopRepository repository;
+
+    @GetMapping("/shops/{id}")
+    public Optional<Shop> shop(@PathVariable long id) {
+        return repository.findById(id);
+    }
 
     @GetMapping("/shops")
-    public Shop shop(@RequestParam(value="name", defaultValue="CaoEGato") String name) {
-        return new Shop(counter.incrementAndGet(), name);
+    public Iterable<Shop> shops(){
+        return repository.findAll();
     }
+
+    @PostMapping("/shops")
+    public @ResponseBody ResponseEntity<String> post(@RequestBody Shop shop) {
+        repository.save(shop);
+        return new ResponseEntity<String>("Shop: id " + shop.getId()
+                + " content: "+ shop.getContent() + " --> saved " , HttpStatus.OK);
+    }
+
 }

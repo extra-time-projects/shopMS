@@ -1,8 +1,19 @@
 package com.extratime.shops.entity;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Shop {
-    private final long id;
-    private final String content;
+
+    @Id
+    private long id;
+    private String content;
+
+    public Shop(){
+    }
+
 
     public Shop(long id, String content) {
         this.id = id;
